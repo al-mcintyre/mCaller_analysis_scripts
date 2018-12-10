@@ -54,6 +54,7 @@ plt.tight_layout()
 plt.savefig('elisa_replicate_comparison.pdf',dpi = 500,bbox_inches='tight')
 plt.close()
 rho,p = spearmanr(xdf[xdf.replicate == 1].percent,xdf[xdf.replicate == 2].percent)
+print 'ELISA replicate comparison'
 print rho, p
 print pearsonr(xdf[xdf.replicate == 1].percent,xdf[xdf.replicate == 2].percent)
 
@@ -64,8 +65,8 @@ pbx = []
 elisay = []
 for i,species in enumerate(sorted(list(set(pbdf["species"])))):
     sdf = pbdf[pbdf.species == species]
-    plt.scatter(sdf[sdf.replicate == 1].pb_percent_m6A,sdf["percent"].mean(),color=col_dict[species],label=species) #divide by 2 for old results
-    pbx.append(sdf[sdf.replicate == 1].pb_percent_m6A.mean())
+    plt.scatter(sdf[sdf.replicate == 1].pb_percent_m6Aover2xLEN,sdf["percent"].mean(),color=col_dict[species],label=species) #divide by 2 for old results
+    pbx.append(sdf[sdf.replicate == 1].pb_percent_m6Aover2xLEN.mean())
     elisay.append(sdf["percent"].mean())
 fit = np.polyfit(pbx, elisay, deg=1)
 plt.plot(pbx, fit[0] * np.asarray(pbx) + fit[1], color='#8997A1',alpha=0.3)
@@ -77,5 +78,6 @@ plt.tight_layout()
 plt.savefig('elisa_motif_comparison.pdf',dpi = 500,bbox_inches='tight')
 plt.close()
 rho,p = spearmanr(pbx,elisay)
-print rho, p
+print 'PB ELISA comparison'
+print rho, p, 'Spearman rho and p'
 print pearsonr(pbx,elisay)
