@@ -1,4 +1,4 @@
 # mCaller_analysis_scripts
 ### Scripts for Nature Communications paper
 
-Sorry they're a mess. Let me know if you need assistance.  
+Please let me know if you need assistance or have questions. Necessary intermediate files for some scripts are too large to host here. 
